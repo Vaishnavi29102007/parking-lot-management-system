@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ParkEase | Parking Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">P</span><span>ParkEase<small>Parking management</small></span></a>
+    <span class="status-pill"><span class="dot"></span> System ready</span>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">PARKING LOT DASHBOARD</p>
+        <h1>Good day, <span>Parking Team.</span></h1>
+        <p class="subheading">A simple view of your parking lot, vehicles, and waiting queue.</p>
+      </div>
+      <div class="date-card"><span>Today's date</span><strong id="today"></strong></div>
+    </section>
+
+    <section class="stats">
+      <article class="stat-card"><div class="stat-top"><span>Available slots</span><span class="stat-icon green">↗</span></div><strong id="availableCount">5</strong><small>Ready for incoming vehicles</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Occupied slots</span><span class="stat-icon blue">▦</span></div><strong id="occupiedCount">0</strong><small>Vehicles currently parked</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Waiting queue</span><span class="stat-icon orange">☷</span></div><strong id="waitingCount">0</strong><small>Vehicles waiting for a slot</small></article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel">
+        <div class="panel-heading"><div><h2>Parking slots</h2><p>Live overview of all 5 parking spaces</p></div><span class="legend"><i class="free-key"></i> Available <i class="occupied-key"></i> Occupied</span></div>
+        <div id="parkingGrid" class="parking-grid"></div>
+        <div class="note"><span>ⓘ</span> When the lot is full, new arrivals join the queue in FIFO order.</div>
+      </article>
+
+      <article class="panel arrival-panel">
+        <div class="panel-heading"><div><h2>Register arrival</h2><p>Add a vehicle to the lot</p></div><span class="form-icon">＋</span></div>
+        <form id="arrivalForm">
+          <label for="owner">Owner name</label>
+          <input id="owner" type="text" placeholder="e.g. Arun Kumar" maxlength="49" required>
+          <label for="vehicle">Vehicle registration number</label>
+          <input id="vehicle" type="text" placeholder="e.g. TN 01 AB 1234" maxlength="19" required>
+          <button class="primary-btn" type="submit">＋ Register vehicle</button>
+        </form>
+        <p class="form-hint">If all slots are occupied, the vehicle will be added to the waiting queue automatically.</p>
+      </article>
+    </section>
+
+    <section class="content-grid lower-grid">
+      <article class="panel">
+        <div class="panel-heading"><div><h2>Parked vehicles</h2><p>Vehicles currently using a slot</p></div><span class="count-badge" id="parkedBadge">0 vehicles</span></div>
+        <div class="table-wrap"><table><thead><tr><th>Slot</th><th>Vehicle</th><th>Owner</th><th>Entry time</th><th>Action</th></tr></thead><tbody id="parkedTable"></tbody></table></div>
+        <div id="emptyParked" class="empty-state">🚘<strong>No parked vehicles yet</strong><span>Register an arrival to get started.</span></div>
+      </article>
+      <article class="panel">
+        <div class="panel-heading"><div><h2>Waiting queue</h2><p>First in, first out</p></div><span class="count-badge orange-badge" id="queueBadge">0 waiting</span></div>
+        <ol id="queueList" class="queue-list"></ol>
+        <div id="emptyQueue" class="empty-state queue-empty">✓<strong>No vehicles waiting</strong><span>The queue is clear.</span></div>
+        <div class="queue-footer"><span>FIFO queue</span><span>First arrival gets the next slot</span></div>
+      </article>
+    </section>
+    <footer>ParkEase · Beginner DSA project · Queue (FIFO) demonstration</footer>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
